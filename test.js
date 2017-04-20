@@ -8,6 +8,10 @@ const ds = milkcocoa.dataStore('piplayer');
 //     console.log(pushed);
 // });
 
-ds.send({control:'next'},(pushed)=>{
+// ds.send({control:'next'},(pushed)=>{
+//     console.log(pushed)
+// });
+
+ds.send({audioVol: 90},(pushed)=>{
     console.log(pushed)
 });

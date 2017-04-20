@@ -30,20 +30,15 @@ player.on('error', (err) => {
 });
 
 ds.on('send', (sended) => {
-    if(!sended.value.control && !sended.value.audioVol) return;
-
-    const ctrl = sended.value.control;
-    const audioVol = sended.value.audioVol;
-
-    if(ctrl === 'next') {
+    if(sended.value.control === 'next') {
         // player.stop();
         player.next().enable('stream');
     }
 
-    if(audioVol){
-        ctrlAudio(audioVol);
+    if(sended.value.audioVol){
+        ctrlAudio(sended.value.audioVol);
     }
-    
+
 });
 
 player.play();
