@@ -27,9 +27,9 @@ player.on('error', (err) => {
     player.next();
 });
 
-ds.on('send', (pushed) => {
-    console.log(pushed.value.control);
-    if(pushed.value.control === 'next') {
+ds.on('send', (sended) => {
+    console.log(sended.value.control);
+    if(sended.value.control === 'next') {
         // player.stop();
         player.next().enable('stream');
     }
