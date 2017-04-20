@@ -1,19 +1,38 @@
 'use strict'
 
+const Milkcocoa = require('./node_modules/mlkcca');
+const milkcocoa = new Milkcocoa(require('./config'));
+const ds = milkcocoa.dataStore('piplayer');
+
 const Player = require('player');
-// const URL = `http://dir.xiph.org/listen/567382/listen.m3u`;
-// const URL = `http://stream.srg-ssr.ch/m/rsp/mp3_128`;
-const URL = `http://gyusyabu.ddo.jp:8100/;stream.mp3`;
-const player = new Player(URL).enable('stream');
+const RADIO_LIST = require('./audio/radioList');
+console.log(RADIO_LIST.music);
+const player = new Player(RADIO_LIST.music).enable('stream');
 
 player.on('playing', (song) => {
     console.log('Playing... ');
     console.log(song);
 });
 
+player.on('playend', (item) => {
+  // return a playend item
+  console.log('src:' + item + ' play done, switching to next one ...');
+  player.play();
+});
+
+
 player.on('error', (err) => {
     console.log('Opps...!')
     console.log(err);
+    player.next();
+});
+
+ds.on('send', (pushed) => {
+    console.log(pushed.value.control);
+    if(pushed.value.control === 'next') {
+        player.stop();
+        // player.next().enable('stream');
+    }
 });
 
 player.play();
