@@ -30,8 +30,8 @@ player.on('error', (err) => {
 ds.on('send', (pushed) => {
     console.log(pushed.value.control);
     if(pushed.value.control === 'next') {
-        player.stop();
-        // player.next().enable('stream');
+        // player.stop();
+        player.next().enable('stream');
     }
 });
 
