@@ -7,8 +7,6 @@ const ds = milkcocoa.dataStore('piplayer');
 const Player = require('player');
 const RADIO_LIST = require('./audio/radioList');
 const ctrlAudio = require('./ctrlAudio');
-
-console.log(RADIO_LIST.music);
 const player = new Player(RADIO_LIST.music).enable('stream');
 
 player.on('playing', (song) => {
@@ -21,7 +19,6 @@ player.on('playend', (item) => {
   console.log('src:' + item + ' play done, switching to next one ...');
   player.play();
 });
-
 
 player.on('error', (err) => {
     console.log('Opps...!')
