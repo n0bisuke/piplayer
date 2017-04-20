@@ -1,8 +1,9 @@
 'use strict'
 
 const Player = require('player');
-const URL = `http://dir.xiph.org/listen/567382/listen.m3u`;
+// const URL = `http://dir.xiph.org/listen/567382/listen.m3u`;
 // const URL = `http://stream.srg-ssr.ch/m/rsp/mp3_128`;
+const URL = `http://gyusyabu.ddo.jp:8100/;stream.mp3`;
 const player = new Player(URL).enable('stream');
 
 player.on('playing', (song) => {
